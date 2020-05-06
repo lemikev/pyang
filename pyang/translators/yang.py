@@ -191,8 +191,9 @@ def emit_stmt(ctx, stmt, fd, level, prev_kwd, prev_kwd_class, islast,
         # line_len is length of line w/o arg but with quotes and space before
         # the arg
         line_len = len(indent) + len(keywordstr) + 1 + 2 + len(eol)
-        if (stmt.keyword in _keyword_prefer_single_quote_arg and
-            "'" not in stmt.arg):
+        if (stmt.keyword in _keyword_prefer_single_quote_arg
+            and "'" not in stmt.arg
+            and '\n' not in stmt.arg):
             # print with single quotes
             if hasattr(stmt, 'arg_substrings') and len(stmt.arg_substrings) > 1:
                 # the arg was already split into multiple lines, keep them
